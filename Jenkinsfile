@@ -24,7 +24,7 @@ pipeline {
 
         stage('Deploy to S3') {
             steps {
-                withAWS(credentials: 'AWS Credentials') {
+                withAWS(credentials: '13.60.227.148') {
                     sh '''
                     aws s3 sync ./build s3://${S3_BUCKET} --delete
                     '''
@@ -34,7 +34,7 @@ pipeline {
 
         stage('Invalidate CloudFront Cache') {
             steps {
-                withAWS(credentials: 'AWS Credentials') {
+                withAWS(credentials: '13.60.227.148') {
                     sh '''
                     aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_DISTRIBUTION_ID} --paths "/*"
                     '''
