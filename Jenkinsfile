@@ -35,7 +35,7 @@ pipeline {
             steps {
                 withAWS(credentials: '13.60.227.148') {
                     bat '''
-                    aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_DISTRIBUTION_ID} --paths "/*"
+                    aws cloudfront create-invalidation --distribution-id %CLOUDFRONT_DISTRIBUTION_ID% --paths "/*"
                     '''
                 }
             }
