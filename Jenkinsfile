@@ -17,15 +17,15 @@ pipeline {
         stage('Build (Optional)') {
             steps {
                 // Optional: Run build tools like npm if your static site has a build step
-                sh 'npm install'
-                sh 'npm run build'
+                bat 'npm install'
+                bat 'npm run build'
             }
         }
 
         stage('Deploy to S3') {
             steps {
                 withAWS(credentials: '13.60.227.148') {
-                    sh '''
+                    bat '''
                     aws s3 sync ./build s3://${S3_BUCKET} --delete
                     '''
                 }
@@ -35,7 +35,7 @@ pipeline {
         stage('Invalidate CloudFront Cache') {
             steps {
                 withAWS(credentials: '13.60.227.148') {
-                    sh '''
+                    bat '''
                     aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_DISTRIBUTION_ID} --paths "/*"
                     '''
                 }
