@@ -25,7 +25,7 @@ pipeline {
             steps {
                 withAWS(credentials: '13.60.227.148') {
                     bat '''
-                    aws s3 sync . s3://${S3_BUCKET} --delete
+                    aws s3 sync . s3://%S3_BUCKET% --delete
                     '''
                 }
             }
