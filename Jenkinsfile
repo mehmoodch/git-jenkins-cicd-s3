@@ -17,8 +17,7 @@ pipeline {
         stage('Build (Optional)') {
             steps {
                 // Optional: Run build tools like npm if your static site has a build step
-                bat 'npm install'
-                bat 'npm run build'
+                echo 'no build steps for static website'
             }
         }
 
