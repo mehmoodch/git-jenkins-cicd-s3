@@ -14,13 +14,13 @@ pipeline {
             }
         }
 
-        //stage('Build (Optional)') {
-         //   steps {
+        stage('Build (Optional)') {
+            steps {
                 // Optional: Run build tools like npm if your static site has a build step
-                //sh 'npm install'
-                //sh 'npm run build'
-         //   }
-       // }
+                sh 'npm install'
+                sh 'npm run build'
+            }
+        }
 
         stage('Deploy to S3') {
             steps {
